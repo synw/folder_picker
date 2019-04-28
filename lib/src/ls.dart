@@ -1,5 +1,6 @@
 import 'dart:io';
 
+/// List the directories in a folder
 List<Directory> ls(Directory dir) {
   List<FileSystemEntity> content = dir.listSync()
     ..sort((a, b) => a.path.compareTo(b.path));

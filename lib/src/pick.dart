@@ -8,7 +8,9 @@ import 'ls.dart';
 typedef Function AfterPickedAction(BuildContext context, Directory folder);
 
 class _FolderPickerState extends State<FolderPicker> {
-  _FolderPickerState({@required this.action, @required this.rootDirectory});
+  _FolderPickerState({@required this.action, @required this.rootDirectory}) {
+    _currentDirectory ??= rootDirectory;
+  }
 
   final AfterPickedAction action;
   final Directory rootDirectory;
@@ -17,7 +19,6 @@ class _FolderPickerState extends State<FolderPicker> {
 
   List<GestureDetector> _getDirs(BuildContext context) {
     var tiles = <GestureDetector>[];
-    _currentDirectory ??= rootDirectory;
     List<Directory> dirs = ls(_currentDirectory);
     dirs.forEach((dir) {
       tiles.add(GestureDetector(
