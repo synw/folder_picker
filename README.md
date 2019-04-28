@@ -13,7 +13,13 @@ A directory picker for Flutter
             return FolderPicker(
                rootDirectory: externalDirectory, /// a [Directory] object
                action: (BuildContext context, Directory folder) {
-                 print("PICKED FOLDER $folder");
+                 print("Picked folder $folder");
                });
    }));
+   ```
+
+## Permissions
+
+   ```xml
+   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
    ```
