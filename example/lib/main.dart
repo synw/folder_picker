@@ -31,7 +31,7 @@ class _FolderPickerPageState extends State<FolderPickerPage> {
                                 return FolderPicker(
                                     rootDirectory: externalDirectory,
                                     action: (BuildContext context,
-                                        Directory folder) {
+                                        Directory folder) async {
                                       print("Picked directory $folder");
                                       setState(() => pickedDirectory = folder);
                                     });

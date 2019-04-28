@@ -14,7 +14,7 @@ A directory picker for Flutter
          builder: (BuildContext context) {
             return FolderPicker(
                rootDirectory: externalDirectory, /// a [Directory] object
-               action: (BuildContext context, Directory folder) {
+               action: (BuildContext context, Directory folder) async {
                  print("Picked folder $folder");
                });
    }));
