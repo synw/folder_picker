@@ -1,5 +1,7 @@
 # Folder picker
 
+[![pub package](https://img.shields.io/pub/v/folder_picker.svg)](https://pub.dartlang.org/packages/folder_picker)
+
 A directory picker for Flutter
 
 ## Usage
