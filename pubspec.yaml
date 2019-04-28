@@ -1,6 +1,6 @@
 name: folder_picker
 author: synw <ansterj@gmail.com>
-description: A directory picker for Flutter
+description: A directory picker for Flutter. Select a directory from the filesystem
 homepage: https://github.com/synw/folder_picker
 
 # The following defines the version and build number for your application.
