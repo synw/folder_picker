@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'ls.dart';
 
 /// The action to be executed after the folder is picked
-typedef Function AfterPickedAction(BuildContext context, Directory folder);
+typedef Future<void> AfterPickedAction(BuildContext context, Directory folder);
 
 class _FolderPickerState extends State<FolderPicker> {
   _FolderPickerState({@required this.action, @required this.rootDirectory}) {
