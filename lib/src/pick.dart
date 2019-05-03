@@ -17,23 +17,23 @@ class _FolderPickerState extends State<FolderPicker> {
 
   Directory _currentDirectory;
 
-  List<GestureDetector> _getDirs(BuildContext context) {
-    var tiles = <GestureDetector>[];
+  List<ListTile> _getDirs(BuildContext context) {
+    var tiles = <ListTile>[];
     List<Directory> dirs = ls(_currentDirectory);
     dirs.forEach((dir) {
-      tiles.add(GestureDetector(
-          onTap: () => setState(() => _currentDirectory = dir),
-          child: ListTile(
-            leading: const Icon(Icons.folder, color: Colors.yellow),
-            title: Text(basename(dir.path)),
-            trailing: GestureDetector(
-              child: const Icon(Icons.file_download),
-              onTap: () {
+      tiles.add(ListTile(
+          leading: IconButton(
+              icon: const Icon(Icons.folder, color: Colors.yellow),
+              onPressed: () => setState(() => _currentDirectory = dir)),
+          title: GestureDetector(
+              onTap: () => setState(() => _currentDirectory = dir),
+              child: Text(basename(dir.path))),
+          trailing: IconButton(
+              icon: const Icon(Icons.file_download),
+              onPressed: () {
                 Navigator.of(context).pop();
                 action(context, dir);
-              },
-            ),
-          )));
+              })));
     });
     return tiles;
   }
