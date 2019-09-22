@@ -4,7 +4,7 @@ import 'package:permission/permission.dart';
 import 'package:folder_picker/folder_picker.dart';
 import 'package:flutter/material.dart';
 
-class _FolderPickerPageState extends State<FolderPickerPage> {
+class _FolderPickerDemoState extends State<FolderPickerDemo> {
   Directory externalDirectory;
   Directory pickedDirectory;
 
@@ -54,14 +54,15 @@ class _FolderPickerPageState extends State<FolderPickerPage> {
                           child:
                               const Text("Pick a folder", textScaleFactor: 1.3),
                           onPressed: () => Navigator.of(context)
-                              .push<FolderPicker>(MaterialPageRoute(
+                              .push<FolderPickerPage>(MaterialPageRoute(
                                   builder: (BuildContext context) {
-                            return FolderPicker(
+                            return FolderPickerPage(
                                 rootDirectory: externalDirectory,
                                 action: (BuildContext context,
                                     Directory folder) async {
                                   print("Picked directory $folder");
                                   setState(() => pickedDirectory = folder);
+                                  Navigator.of(context).pop();
                                 });
                           })),
                         ),
@@ -76,9 +77,9 @@ class _FolderPickerPageState extends State<FolderPickerPage> {
   }
 }
 
-class FolderPickerPage extends StatefulWidget {
+class FolderPickerDemo extends StatefulWidget {
   @override
-  _FolderPickerPageState createState() => _FolderPickerPageState();
+  _FolderPickerDemoState createState() => _FolderPickerDemoState();
 }
 
 class MyApp extends StatelessWidget {
@@ -86,7 +87,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Folder picker Demo',
-      home: FolderPickerPage(),
+      home: FolderPickerDemo(),
       theme: ThemeData.dark(),
     );
   }
