@@ -6,6 +6,7 @@
 - Add a `pickerIcon` parameter
 - Add the `compact` parameter
 - Add the ability to create a directory
+- Add a ready to use page in addition to the widget
 
 ## 0.2.1
 
