@@ -4,6 +4,8 @@
 
 A directory picker for Flutter
 
+![Screenshot](screenshot.png)
+
 ## Usage
 
 A picker page is available as well as a standalone widget.
