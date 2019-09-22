@@ -13,7 +13,7 @@ homepage: https://github.com/synw/folder_picker
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.2.1
+version: 0.3.0
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -22,7 +22,7 @@ dependencies:
   flutter:
     sdk: flutter
   path: ^1.6.4
-  permission: ^0.1.2
+  filex: ^0.2.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0
+
+- Refactor using the Filex package
+- Add a `pickerIcon` parameter
+- Add the `compact` parameter
+- Add the ability to create a directory
+
 ## 0.2.1
 
 - Improve buttons
