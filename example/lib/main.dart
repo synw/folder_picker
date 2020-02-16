@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 class _FolderPickerDemoState extends State<FolderPickerDemo> {
   Directory externalDirectory;
   Directory pickedDirectory;
+  bool ready = false;
 
   Future<void> getPermissions() async {
     final permissions =
@@ -28,7 +29,13 @@ class _FolderPickerDemoState extends State<FolderPickerDemo> {
 
   Future<void> getStorage() async {
     final directory = await getExternalStorageDirectory();
-    setState(() => externalDirectory = directory);
+    print(directory.path);
+    final rdir = directory.path
+        .replaceFirst("Android/data/com.example.example/files", "");
+    setState(() {
+      externalDirectory = Directory(rdir);
+      ready = true;
+    });
   }
 
   Future<void> init() async {
@@ -50,22 +57,25 @@ class _FolderPickerDemoState extends State<FolderPickerDemo> {
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                        RaisedButton(
-                          child:
-                              const Text("Pick a folder", textScaleFactor: 1.3),
-                          onPressed: () => Navigator.of(context)
-                              .push<FolderPickerPage>(MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                            return FolderPickerPage(
-                                rootDirectory: externalDirectory,
-                                action: (BuildContext context,
-                                    Directory folder) async {
-                                  print("Picked directory $folder");
-                                  setState(() => pickedDirectory = folder);
-                                  Navigator.of(context).pop();
-                                });
-                          })),
-                        ),
+                        (ready)
+                            ? RaisedButton(
+                                child: const Text("Pick a folder",
+                                    textScaleFactor: 1.3),
+                                onPressed: () => Navigator.of(context)
+                                    .push<FolderPickerPage>(MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                  return FolderPickerPage(
+                                      rootDirectory: externalDirectory,
+                                      action: (BuildContext context,
+                                          Directory folder) async {
+                                        print("Picked directory $folder");
+                                        setState(
+                                            () => pickedDirectory = folder);
+                                        Navigator.of(context).pop();
+                                      });
+                                })),
+                              )
+                            : const Center(child: CircularProgressIndicator()),
                         (pickedDirectory != null)
                             ? Padding(
                                 padding: const EdgeInsets.only(top: 30.0),
