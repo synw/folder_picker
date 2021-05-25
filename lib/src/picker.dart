@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:filex/filex.dart';
 
 /// The action to be executed after the folder is picked
-typedef Future<void> AfterPickedAction(BuildContext context, Directory folder);
+typedef AfterPickedAction = Future<void> Function(
+    BuildContext context, Directory folder);
 
 class _FolderPickerState extends State<FolderPicker> {
   _FolderPickerState(
-      {@required this.action,
-      @required this.rootDirectory,
+      {required this.action,
+      required this.rootDirectory,
       this.controller,
       this.compact = false,
       this.pickerIcon =
@@ -19,35 +20,35 @@ class _FolderPickerState extends State<FolderPicker> {
   final AfterPickedAction action;
   final Directory rootDirectory;
   final bool compact;
-  FilexController controller;
+  FilexController? controller;
   Icon pickerIcon;
 
   @override
   Widget build(BuildContext context) {
     return Filex(
-        controller: controller,
+        controller: controller!,
         compact: compact,
         showOnlyDirectories: true,
         directoryTrailingBuilder: (context, folder) {
           return GestureDetector(
+              onTap: () => action(context, folder.item as Directory),
               child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 3.0, 0),
-                  child: pickerIcon),
-              onTap: () => action(context, folder.item as Directory));
+                  child: pickerIcon));
         });
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    controller!.dispose();
     super.dispose();
   }
 }
 
 class FolderPicker extends StatefulWidget {
   FolderPicker(
-      {@required this.action,
-      @required this.rootDirectory,
+      {required this.action,
+      required this.rootDirectory,
       this.controller,
       this.compact = false,
       this.pickerIcon =
@@ -56,7 +57,7 @@ class FolderPicker extends StatefulWidget {
   final AfterPickedAction action;
   final Directory rootDirectory;
   final bool compact;
-  final FilexController controller;
+  final FilexController? controller;
   final Icon pickerIcon;
 
   @override

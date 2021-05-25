@@ -7,8 +7,8 @@ import 'picker.dart';
 
 class _FolderPickerPageState extends State<FolderPickerPage> {
   _FolderPickerPageState(
-      {@required this.action,
-      @required this.rootDirectory,
+      {required this.action,
+      required this.rootDirectory,
       this.controller,
       this.compact = false,
       this.pickerIcon =
@@ -20,19 +20,19 @@ class _FolderPickerPageState extends State<FolderPickerPage> {
   final AfterPickedAction action;
   final Directory rootDirectory;
   final bool compact;
-  FilexController controller;
+  FilexController? controller;
   Icon pickerIcon;
 
-  String _dirName;
-  StreamSubscription<List<DirectoryItem>> _sub;
+  late String _dirName;
+  late StreamSubscription<List<DirectoryItem>> _sub;
 
   @override
   void initState() {
     super.initState();
-    _sub = controller.changefeed.listen((_) {
-      var n = basename(controller.directory.path);
-      if (n == "0") {
-        n = "Pick a folder";
+    _sub = controller!.changefeed.listen((_) {
+      var n = basename(controller!.directory!.path);
+      if (n == '0') {
+        n = 'Pick a folder';
       }
       setState(() => _dirName = n);
     });
@@ -63,8 +63,8 @@ class _FolderPickerPageState extends State<FolderPickerPage> {
 
 class FolderPickerPage extends StatefulWidget {
   FolderPickerPage(
-      {@required this.action,
-      @required this.rootDirectory,
+      {required this.action,
+      required this.rootDirectory,
       this.controller,
       this.compact = false,
       this.pickerIcon =
@@ -73,7 +73,7 @@ class FolderPickerPage extends StatefulWidget {
   final AfterPickedAction action;
   final Directory rootDirectory;
   final bool compact;
-  final FilexController controller;
+  final FilexController? controller;
   final Icon pickerIcon;
 
   @override
